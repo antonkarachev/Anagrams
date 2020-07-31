@@ -4,6 +4,10 @@ public class AnagramMaker {
 
     private static final String SPACE_DELIMITER = " ";
 
+    private AnagramMaker() {
+        throw new IllegalStateException("You can`t create instance of this class, it`s just utility");
+    }
+
     public static String makeAnagram(String sentence) {
         validate(sentence);
 

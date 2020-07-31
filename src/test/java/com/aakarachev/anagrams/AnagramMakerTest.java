@@ -2,18 +2,17 @@ package com.aakarachev.anagrams;
 
 import org.junit.jupiter.api.Test;
 
+import static com.aakarachev.anagrams.AnagramMaker.makeAnagram;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 class AnagramMakerTest {
 
-    private final AnagramMaker anagramMaker = new AnagramMaker();
-
     @Test
     void makeAnagramShouldSwapOnlyLettersIfSentenceContainsOneWordWithOneNonLetterSymbol() {
         String expected = "h";
-        String actual = anagramMaker.makeAnagram("h");
+        String actual = makeAnagram("h");
 
         assertEquals(expected, actual);
     }
@@ -21,7 +20,7 @@ class AnagramMakerTest {
     @Test
     void makeAnagramShouldSwapOnlyLettersIfSentenceContainsOneWordWithOneLetterSymbol() {
         String expected = "1";
-        String actual = anagramMaker.makeAnagram("1");
+        String actual = makeAnagram("1");
 
         assertEquals(expected, actual);
     }
@@ -29,7 +28,7 @@ class AnagramMakerTest {
     @Test
     void makeAnagramShouldSwapOnlyLettersIfSentenceContainsOneWordWithSameLetterSymbol() {
         String expected = "aa";
-        String actual = anagramMaker.makeAnagram("aa");
+        String actual = makeAnagram("aa");
 
         assertEquals(expected, actual);
     }
@@ -37,7 +36,7 @@ class AnagramMakerTest {
     @Test
     void makeAnagramShouldSwapOnlyLettersIfSentenceContainsOneWordWithSameNonLetterSymbol() {
         String expected = "11";
-        String actual = anagramMaker.makeAnagram("11");
+        String actual = makeAnagram("11");
 
         assertEquals(expected, actual);
     }
@@ -45,7 +44,7 @@ class AnagramMakerTest {
     @Test
     void makeAnagramShouldSwapOnlyLettersIfSentenceContainsOneWordWithDifferentLetterSymbols() {
         String expected = "abcde";
-        String actual = anagramMaker.makeAnagram("edcba");
+        String actual = makeAnagram("edcba");
 
         assertEquals(expected, actual);
     }
@@ -53,7 +52,7 @@ class AnagramMakerTest {
     @Test
     void makeAnagramShouldSwapOnlyLettersIfSentenceContainsOneWordWithDifferentNonLetterSymbols() {
         String expected = "a!bcd1e";
-        String actual = anagramMaker.makeAnagram("e!dcb1a");
+        String actual = makeAnagram("e!dcb1a");
 
         assertEquals(expected, actual);
     }
@@ -61,7 +60,7 @@ class AnagramMakerTest {
     @Test
     void makeAnagramShouldSwapOnlyLettersIfSentenceContainsOneWordWithDifferentLetterSymbolsUpperAndLowerCases() {
         String expected = "AbcDe";
-        String actual = anagramMaker.makeAnagram("eDcbA");
+        String actual = makeAnagram("eDcbA");
 
         assertEquals(expected, actual);
     }
@@ -69,7 +68,7 @@ class AnagramMakerTest {
     @Test
     void makeAnagramShouldSwapOnlyLettersIfSentenceContainsTwoWordWithOnlyLetters() {
         String expected = "abcde fghij";
-        String actual = anagramMaker.makeAnagram("edcba jihgf");
+        String actual = makeAnagram("edcba jihgf");
 
         assertEquals(expected, actual);
     }
@@ -77,7 +76,7 @@ class AnagramMakerTest {
     @Test
     void makeAnagramShouldSwapOnlyLettersIfSentenceContainsTwoWordWithOnlyNonLettersSymbols() {
         String expected = "123456 789002";
-        String actual = anagramMaker.makeAnagram("123456 789002");
+        String actual = makeAnagram("123456 789002");
 
         assertEquals(expected, actual);
     }
@@ -85,7 +84,7 @@ class AnagramMakerTest {
     @Test
     void makeAnagramShouldSwapOnlyLettersIfSentenceContainsTwoWordWithDifferentSymbols() {
         String expected = "a1bcd efgh23";
-        String actual = anagramMaker.makeAnagram("d1cba hgfe23");
+        String actual = makeAnagram("d1cba hgfe23");
 
         assertEquals(expected, actual);
     }
@@ -93,7 +92,7 @@ class AnagramMakerTest {
     @Test
     void makeAnagramShouldSwapOnlyLettersIfSentenceContainsThreeWordWithOnlyLetters() {
         String expected = "abcde gthysd hgfdwq";
-        String actual = anagramMaker.makeAnagram("edcba dsyhtg qwdfgh");
+        String actual = makeAnagram("edcba dsyhtg qwdfgh");
 
         assertEquals(expected, actual);
     }
@@ -101,7 +100,7 @@ class AnagramMakerTest {
     @Test
     void makeAnagramShouldSwapOnlyLettersIfSentenceContainsThreeWordWithOnlyNonLettersSymbols() {
         String expected = "123456 654321 7896544";
-        String actual = anagramMaker.makeAnagram("123456 654321 7896544");
+        String actual = makeAnagram("123456 654321 7896544");
 
         assertEquals(expected, actual);
     }
@@ -109,7 +108,7 @@ class AnagramMakerTest {
     @Test
     void makeAnagramShouldSwapOnlyLettersIfSentenceContainsThreeWordWithDifferentSymbols() {
         String expected = "as2edw5q fds34fs 1fds333";
-        String actual = anagramMaker.makeAnagram("qw2des5a sfs34df 1sdf333");
+        String actual = makeAnagram("qw2des5a sfs34df 1sdf333");
 
         assertEquals(expected, actual);
     }
@@ -117,19 +116,19 @@ class AnagramMakerTest {
 
     @Test
     void makeAnagramShouldThrowIllegalArgumentExceptionIfSentenceIsNull() {
-        assertThrows(IllegalArgumentException.class, () -> anagramMaker.makeAnagram(null),
+        assertThrows(IllegalArgumentException.class, () -> makeAnagram(null),
                 "Sentence is null");
     }
 
     @Test
     void makeAnagramShouldThrowIllegalArgumentExceptionIfSentenceIsEmpty() {
-        assertThrows(IllegalArgumentException.class, () -> anagramMaker.makeAnagram(""),
+        assertThrows(IllegalArgumentException.class, () -> makeAnagram(""),
                 "Sentence is empty or contains only tabulation symbols");
     }
 
     @Test
     void makeAnagramShouldThrowIllegalArgumentExceptionIfSentenceContainsOnlyTabulation() {
-        assertThrows(IllegalArgumentException.class, () -> anagramMaker.makeAnagram("       "),
+        assertThrows(IllegalArgumentException.class, () -> makeAnagram("       "),
                 "Sentence is empty or contains only tabulation symbols");
     }
 }
